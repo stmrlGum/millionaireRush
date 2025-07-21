@@ -12,7 +12,6 @@
 		83C2DF532E2E4AF0008EF248 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */; };
 		83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF482E2E4AF0008EF248 /* Assets.xcassets */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
-		83C2DF572E2E4AF0008EF248 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4D2E2E4AF0008EF248 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +20,6 @@
 		83C2DF482E2E4AF0008EF248 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C2DF4A2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		83C2DF4C2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,7 +61,6 @@
 				83C2DF482E2E4AF0008EF248 /* Assets.xcassets */,
 				83C2DF492E2E4AF0008EF248 /* Info.plist */,
 				83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */,
-				83C2DF4D2E2E4AF0008EF248 /* Main.storyboard */,
 				83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */,
 				83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */,
 			);
@@ -194,7 +191,6 @@
 			files = (
 				83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */,
 				83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */,
-				83C2DF572E2E4AF0008EF248 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,14 +218,6 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		83C2DF4D2E2E4AF0008EF248 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83C2DF4C2E2E4AF0008EF248 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -245,7 +233,6 @@
 				INFOPLIST_FILE = millionaireRush/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -273,7 +260,6 @@
 				INFOPLIST_FILE = millionaireRush/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
