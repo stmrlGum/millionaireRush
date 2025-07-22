@@ -54,9 +54,6 @@
 		83C2DF502E2E4AF0008EF248 /* millionaireRush */ = {
 			isa = PBXGroup;
 			children = (
-				83C2DF5E2E2E4B95008EF248 /* Sounds */,
-				83C2DF592E2E4B3A008EF248 /* Controllers */,
-				83C2DF582E2E4AF6008EF248 /* NetworkMananger */,
 				83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */,
 				83C2DF482E2E4AF0008EF248 /* Assets.xcassets */,
 				83C2DF492E2E4AF0008EF248 /* Info.plist */,
@@ -65,67 +62,6 @@
 				83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */,
 			);
 			path = millionaireRush;
-			sourceTree = "<group>";
-		};
-		83C2DF582E2E4AF6008EF248 /* NetworkMananger */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NetworkMananger;
-			sourceTree = "<group>";
-		};
-		83C2DF592E2E4B3A008EF248 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				83C2DF5F2E2E4BEC008EF248 /* GameStage */,
-				83C2DF5D2E2E4B87008EF248 /* GameOver */,
-				83C2DF5C2E2E4B70008EF248 /* Game */,
-				83C2DF5B2E2E4B5B008EF248 /* Rules */,
-				83C2DF5A2E2E4B43008EF248 /* Home */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		83C2DF5A2E2E4B43008EF248 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		83C2DF5B2E2E4B5B008EF248 /* Rules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Rules;
-			sourceTree = "<group>";
-		};
-		83C2DF5C2E2E4B70008EF248 /* Game */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Game;
-			sourceTree = "<group>";
-		};
-		83C2DF5D2E2E4B87008EF248 /* GameOver */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GameOver;
-			sourceTree = "<group>";
-		};
-		83C2DF5E2E2E4B95008EF248 /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sounds;
-			sourceTree = "<group>";
-		};
-		83C2DF5F2E2E4BEC008EF248 /* GameStage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GameStage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
