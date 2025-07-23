@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StartScreenVC.swift
 //  millionaireRush
 //
 //  Created by Danil on 21.07.2025.
@@ -14,13 +14,13 @@ enum HomeScreenState {
     case noGameWithHighScore
 }
 
-class ViewController: UIViewController {
+class StartScreenVC: UIViewController {
     
     
-    var bestScore: Int = 15000
+    var bestScore: Int = 15000 // MARK: TEMP HARDCODE
     var hasSavedGame: Bool = true
     
-    private var currentState: HomeScreenState {
+    var currentState: HomeScreenState {
         if hasSavedGame {
             return .gameInProgress
         } else if bestScore > 0 {
@@ -31,6 +31,12 @@ class ViewController: UIViewController {
     }
     
    //MARK: UI Элементы
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "background")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
     
     let scoreLabelStack: UIStackView = {
         let stack = UIStackView()
@@ -67,7 +73,7 @@ class ViewController: UIViewController {
     
     private lazy var logoMillionare: UIImageView = {
         let logoImageView = UIImageView()
-        let image = UIImage(named: "logo 1")
+        let image = UIImage(named: "logo")
         logoImageView.image = image
         logoImageView.contentMode = .scaleAspectFill
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -110,7 +116,7 @@ class ViewController: UIViewController {
     private lazy var continueButton: UIButton = {
         let button = UIButton()
         button.setTitle("Continue game", for: .normal)
-        button.setBackgroundImage(UIImage(named: "yellowButton"), for: .normal)
+        button.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = false
@@ -121,7 +127,6 @@ class ViewController: UIViewController {
     private lazy var coinImage: UIImageView = {
         let imageView = UIImageView()
         let image = UIImage(named: "coin")
-        imageView.backgroundColor = UIColor(red: 255/255, green: 154/255, blue: 48/255, alpha: 1)
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.clipsToBounds = true
         imageView.image = image
@@ -134,8 +139,7 @@ class ViewController: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = CustomBackground()
-        [startButton, textLabel, logoMillionare, helpButton,continueButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack].forEach( {view.addSubview($0) })
+        [backgroundImageView, startButton, textLabel, logoMillionare, helpButton,continueButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack].forEach( {view.addSubview($0) })
         scoreLabelStack.addArrangedSubview(coinImage)
         scoreLabelStack.addArrangedSubview(allTimeScoreLabel)
         setupConstaints()
@@ -145,6 +149,10 @@ class ViewController: UIViewController {
     //MARK: Private Methods
     private func setupConstaints(){
         NSLayoutConstraint.activate([
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             startButton.heightAnchor.constraint(equalToConstant: 62),
             startButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -109),
             startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
@@ -190,7 +198,7 @@ class ViewController: UIViewController {
             allTimeScoreLabel.isHidden = true
             allTimeScoreTextLabel.isHidden = true
             continueButton.isHidden = true
-            startButton.setBackgroundImage(UIImage(named: "yellowButton"), for: .normal)
+            startButton.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
             NSLayoutConstraint.activate([
                 textLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -147)
             ])
@@ -220,10 +228,12 @@ class ViewController: UIViewController {
     }
     
     @objc func pressedStartButton(_ sender: UIButton) {
+        sender.changeState()
         print("New game")
     }
     
     @objc func pressedContinueButton(_ sender: UIButton) {
+        sender.changeState()
         print("Continue game")
     }
     

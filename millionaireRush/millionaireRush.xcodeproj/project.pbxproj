@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8352AD5D2E311FC200F4084D /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352AD5C2E311FB600F4084D /* UIButtonExtensions.swift */; };
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
-		83C2DF532E2E4AF0008EF248 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */; };
+		83C2DF532E2E4AF0008EF248 /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4F2E2E4AF0008EF248 /* StartScreenVC.swift */; };
 		83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF482E2E4AF0008EF248 /* Assets.xcassets */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
-		93DEA6FF2E2EBCE8006F7FA1 /* CustomBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA6FE2E2EBCE8006F7FA1 /* CustomBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8352AD5C2E311FB600F4084D /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		83C2DF192E2E468A008EF248 /* millionaireRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = millionaireRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83C2DF482E2E4AF0008EF248 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C2DF4A2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		93DEA6FE2E2EBCE8006F7FA1 /* CustomBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBackground.swift; sourceTree = "<group>"; };
+		83C2DF4F2E2E4AF0008EF248 /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +37,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8352AD5B2E311FAF00F4084D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8352AD5C2E311FB600F4084D /* UIButtonExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8352AD5E2E31301E00F4084D /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				83C2DF4F2E2E4AF0008EF248 /* StartScreenVC.swift */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
 		83C2DF102E2E468A008EF248 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +72,7 @@
 		83C2DF502E2E4AF0008EF248 /* millionaireRush */ = {
 			isa = PBXGroup;
 			children = (
+				8352AD5B2E311FAF00F4084D /* Extensions */,
 				83C2DF5E2E2E4B95008EF248 /* Sounds */,
 				83C2DF592E2E4B3A008EF248 /* Controllers */,
 				83C2DF582E2E4AF6008EF248 /* NetworkMananger */,
@@ -64,8 +81,7 @@
 				83C2DF492E2E4AF0008EF248 /* Info.plist */,
 				83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */,
 				83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */,
-				83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */,
-				93DEA6FE2E2EBCE8006F7FA1 /* CustomBackground.swift */,
+				8352AD5E2E31301E00F4084D /* StartScreen */,
 			);
 			path = millionaireRush;
 			sourceTree = "<group>";
@@ -204,10 +220,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93DEA6FF2E2EBCE8006F7FA1 /* CustomBackground.swift in Sources */,
+				8352AD5D2E311FC200F4084D /* UIButtonExtensions.swift in Sources */,
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
-				83C2DF532E2E4AF0008EF248 /* ViewController.swift in Sources */,
+				83C2DF532E2E4AF0008EF248 /* StartScreenVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
