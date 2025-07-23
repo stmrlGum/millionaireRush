@@ -16,7 +16,8 @@ enum HomeScreenState {
 
 class ViewController: UIViewController {
     
-    var bestScore: Int = 2
+    
+    var bestScore: Int = 15000
     var hasSavedGame: Bool = true
     
     private var currentState: HomeScreenState {
@@ -30,6 +31,18 @@ class ViewController: UIViewController {
     }
     
    //MARK: UI Элементы
+    
+    let scoreLabelStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 2
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    
     private lazy var startButton: UIButton = {
         let button = UIButton()
         button.setTitle("New game", for: .normal)
@@ -54,7 +67,7 @@ class ViewController: UIViewController {
     
     private lazy var logoMillionare: UIImageView = {
         let logoImageView = UIImageView()
-        let image = UIImage(named: "logo")
+        let image = UIImage(named: "logo 1")
         logoImageView.image = image
         logoImageView.contentMode = .scaleAspectFill
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,6 +101,7 @@ class ViewController: UIViewController {
         label.textColor = .white
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.isHidden = false
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -104,12 +118,26 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private lazy var coinImage: UIImageView = {
+        let imageView = UIImageView()
+        let image = UIImage(named: "coin")
+        imageView.backgroundColor = UIColor(red: 255/255, green: 154/255, blue: 48/255, alpha: 1)
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.clipsToBounds = true
+        imageView.image = image
+        imageView.contentMode = .scaleToFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view = CustomBackground()
-        [startButton, textLabel, logoMillionare, helpButton,continueButton, allTimeScoreLabel, allTimeScoreTextLabel].forEach( {view.addSubview($0) })
+        [startButton, textLabel, logoMillionare, helpButton,continueButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack].forEach( {view.addSubview($0) })
+        scoreLabelStack.addArrangedSubview(coinImage)
+        scoreLabelStack.addArrangedSubview(allTimeScoreLabel)
         setupConstaints()
         updateUI(for: currentState)
     }
@@ -138,14 +166,20 @@ class ViewController: UIViewController {
             continueButton.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -16),
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
-            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
-            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+//            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
+//            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
+//            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+//            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             allTimeScoreTextLabel.heightAnchor.constraint(equalToConstant: 19),
-            allTimeScoreTextLabel.bottomAnchor.constraint(equalTo: allTimeScoreLabel.topAnchor, constant: -8),
+            allTimeScoreTextLabel.bottomAnchor.constraint(equalTo: scoreLabelStack.topAnchor, constant: -8),
             allTimeScoreTextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             allTimeScoreTextLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            scoreLabelStack.heightAnchor.constraint(equalToConstant: 32),
+            scoreLabelStack.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
+            scoreLabelStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 125),
+            scoreLabelStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -125),
+            coinImage.heightAnchor.constraint(equalToConstant: 32),
+            coinImage.widthAnchor.constraint(equalToConstant: 32)
         ])
     }
     
