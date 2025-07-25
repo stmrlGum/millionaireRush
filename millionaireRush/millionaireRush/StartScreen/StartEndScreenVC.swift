@@ -1,5 +1,5 @@
 //
-//  StartScreenVC.swift
+//  StartEndScreenVC.swift
 //  millionaireRush
 //
 //  Created by Danil on 21.07.2025.
@@ -8,19 +8,19 @@
 import UIKit
 import Foundation
 
-enum HomeScreenState {
+enum StartEndScreenState {
     case firstStart
     case gameInProgress
     case noGameWithHighScore
 }
 
-class StartScreenVC: UIViewController {
+class StartEndScreenVC: UIViewController {
     
     
     var bestScore: Int = 15000 // MARK: TEMP HARDCODE
     var hasSavedGame: Bool = true
     
-    var currentState: HomeScreenState {
+    var currentState: StartEndScreenState {
         if hasSavedGame {
             return .gameInProgress
         } else if bestScore > 0 {
@@ -163,8 +163,7 @@ class StartScreenVC: UIViewController {
             textLabel.bottomAnchor.constraint(equalTo: allTimeScoreTextLabel.topAnchor, constant: -16),
             logoMillionare.heightAnchor.constraint(equalToConstant: 250),
             logoMillionare.widthAnchor.constraint(equalToConstant: 250),
-            logoMillionare.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 90),
-            logoMillionare.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -90),
+            logoMillionare.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoMillionare.bottomAnchor.constraint(equalTo: textLabel.topAnchor, constant: -16),
             helpButton.heightAnchor.constraint(equalToConstant: 32),
             helpButton.widthAnchor.constraint(equalToConstant: 32),
@@ -191,7 +190,7 @@ class StartScreenVC: UIViewController {
         ])
     }
     
-    private func updateUI(for state: HomeScreenState) {
+    private func updateUI(for state: StartEndScreenState) {
         
         switch state {
         case .firstStart:
@@ -212,19 +211,6 @@ class StartScreenVC: UIViewController {
                 allTimeScoreLabel.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -111)
             ])
         }
-    }
-    
-    private func setupBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-                UIColor(red: 55/255, green: 76/255, blue: 148/255, alpha: 1).cgColor,
-                UIColor(red: 16/255, green: 14/255, blue: 2/255, alpha: 1).cgColor
-            ]
-            gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
-            gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
-            gradientLayer.frame = view.bounds
-
-            view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     @objc func pressedStartButton(_ sender: UIButton) {
