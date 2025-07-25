@@ -17,13 +17,13 @@ class RulesViewController: UIViewController {
         textView.font = UIFont.systemFont(ofSize: 18)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textColor = .white
-        textView.backgroundColor = .darkGray  //#313445
+        textView.backgroundColor = #colorLiteral(red: 0.250951618, green: 0.2677560449, blue: 0.3410356045, alpha: 1)
         return textView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = #colorLiteral(red: 0.250951618, green: 0.2677560449, blue: 0.3410356045, alpha: 1)
         view.addSubview(textView)
         
         setupTextContent()
