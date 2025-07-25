@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671199DB2E33D96C00E34690 /* RulesViewController.swift */; };
 		8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352AD582E310EBC00F4084D /* StopwatchView.swift */; };
 		837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121C92E32748000DB2309 /* QuestionVM.swift */; };
 		837121CC2E32748000DB2309 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121C72E32748000DB2309 /* NetworkManager.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		671199DB2E33D96C00E34690 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		8352AD582E310EBC00F4084D /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 		837121C72E32748000DB2309 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		837121C92E32748000DB2309 /* QuestionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionVM.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */,
 				83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */,
 				83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */,
+				671199DB2E33D96C00E34690 /* RulesViewController.swift */,
 			);
 			path = millionaireRush;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */,
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */,
@@ -207,6 +211,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
