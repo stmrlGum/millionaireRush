@@ -13,8 +13,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print("hello world")
         print("test1")
-        let sounds = SoundManager()
-        sounds.playSound()
     }
 
 
