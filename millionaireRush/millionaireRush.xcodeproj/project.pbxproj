@@ -133,10 +133,17 @@
 			path = Rules;
 			sourceTree = "<group>";
 		};
-		83C2DF102E2E468A008EF248 = {
+		8373C8282E35173E00D0F80C /* EndScreen */ = {
 			isa = PBXGroup;
 			children = (
 				F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */,
+			);
+			path = EndScreen;
+			sourceTree = "<group>";
+		};
+		83C2DF102E2E468A008EF248 = {
+			isa = PBXGroup;
+			children = (
 				83C2DF502E2E4AF0008EF248 /* millionaireRush */,
 				83C2DF1A2E2E468A008EF248 /* Products */,
 			);
@@ -153,6 +160,7 @@
 		83C2DF502E2E4AF0008EF248 /* millionaireRush */ = {
 			isa = PBXGroup;
 			children = (
+				8373C8282E35173E00D0F80C /* EndScreen */,
 				8373C8172E34C3F300D0F80C /* Extensions */,
 				8373C81A2E34C3F300D0F80C /* StartScreen */,
 				837121D12E327AA300DB2309 /* Sounds */,
