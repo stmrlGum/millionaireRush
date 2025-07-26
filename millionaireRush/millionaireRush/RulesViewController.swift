@@ -18,6 +18,8 @@ class RulesViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textColor = .white
         textView.backgroundColor = #colorLiteral(red: 0.250951618, green: 0.2677560449, blue: 0.3410356045, alpha: 1)
+        textView.textContainerInset = .init(top: 0, left: 30, bottom: 0, right: 30)
+        textView.textAlignment = .left
         return textView
     }()
 
@@ -60,8 +62,8 @@ class RulesViewController: UIViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
         ])
     }
