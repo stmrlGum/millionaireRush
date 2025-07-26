@@ -7,25 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8352AD5D2E311FC200F4084D /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352AD5C2E311FB600F4084D /* UIButtonExtensions.swift */; };
+		671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671199DB2E33D96C00E34690 /* RulesViewController.swift */; };
+		8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352AD582E310EBC00F4084D /* StopwatchView.swift */; };
+		837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121C92E32748000DB2309 /* QuestionVM.swift */; };
+		837121CC2E32748000DB2309 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121C72E32748000DB2309 /* NetworkManager.swift */; };
+		837121CF2E32774600DB2309 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121CE2E32774000DB2309 /* SoundManager.swift */; };
+		837121D72E327AB000DB2309 /* onWaitAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D42E327AB000DB2309 /* onWaitAnswer.mp3 */; };
+		837121D82E327AB000DB2309 /* openMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D52E327AB000DB2309 /* openMusic.mp3 */; };
+		837121D92E327AB000DB2309 /* wrongAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D62E327AB000DB2309 /* wrongAnswer.mp3 */; };
+		837121DA2E327AB000DB2309 /* clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D22E327AB000DB2309 /* clock.mp3 */; };
+		837121DB2E327AB000DB2309 /* correctAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D32E327AB000DB2309 /* correctAnswer.mp3 */; };
+		8373C81B2E34C3F300D0F80C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8182E34C3F300D0F80C /* GameViewController.swift */; };
+		8373C81C2E34C3F300D0F80C /* StartEndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */; };
+		8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */; };
+		8373C81F2E34C8EA00D0F80C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8373C81E2E34C8EA00D0F80C /* Assets.xcassets */; };
+		8373C8252E350D9200D0F80C /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8242E350D8300D0F80C /* StringExtensions.swift */; };
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
-		83C2DF532E2E4AF0008EF248 /* StartEndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4F2E2E4AF0008EF248 /* StartEndScreenVC.swift */; };
-		83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF482E2E4AF0008EF248 /* Assets.xcassets */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
-		93DEA7072E32B53C006F7FA1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DEA7062E32B53C006F7FA1 /* GameViewController.swift */; };
+		F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8352AD5C2E311FB600F4084D /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
+		671199DB2E33D96C00E34690 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		8352AD582E310EBC00F4084D /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
+		837121C72E32748000DB2309 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		837121C92E32748000DB2309 /* QuestionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionVM.swift; sourceTree = "<group>"; };
+		837121CE2E32774000DB2309 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		837121D22E327AB000DB2309 /* clock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clock.mp3; sourceTree = "<group>"; };
+		837121D32E327AB000DB2309 /* correctAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correctAnswer.mp3; sourceTree = "<group>"; };
+		837121D42E327AB000DB2309 /* onWaitAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = onWaitAnswer.mp3; sourceTree = "<group>"; };
+		837121D52E327AB000DB2309 /* openMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = openMusic.mp3; sourceTree = "<group>"; };
+		837121D62E327AB000DB2309 /* wrongAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongAnswer.mp3; sourceTree = "<group>"; };
+		8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
+		8373C8182E34C3F300D0F80C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEndScreenVC.swift; sourceTree = "<group>"; };
+		8373C81E2E34C8EA00D0F80C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8373C8242E350D8300D0F80C /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		83C2DF192E2E468A008EF248 /* millionaireRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = millionaireRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83C2DF482E2E4AF0008EF248 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C2DF4A2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		83C2DF4F2E2E4AF0008EF248 /* StartEndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEndScreenVC.swift; sourceTree = "<group>"; };
 		93DEA7062E32B53C006F7FA1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScreenVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +83,87 @@
 			sourceTree = "<group>";
 		};
 		83C2DF102E2E468A008EF248 = {
+		8352AD5A2E31108500F4084D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8352AD582E310EBC00F4084D /* StopwatchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		837121C82E32748000DB2309 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				837121C72E32748000DB2309 /* NetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		837121CA2E32748000DB2309 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8352AD5B2E311FAF00F4084D /* Extensions */,
+				83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */,
+				83C2DF482E2E4AF0008EF248 /* Assets.xcassets */,
+				83C2DF492E2E4AF0008EF248 /* Info.plist */,
+				83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */,
+				83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */,
+				8352AD5E2E31301E00F4084D /* StartScreen */,
+				837121C92E32748000DB2309 /* QuestionVM.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		837121CD2E32773400DB2309 /* SoundManager */ = {
+			isa = PBXGroup;
+			children = (
+				837121CE2E32774000DB2309 /* SoundManager.swift */,
+			);
+			path = SoundManager;
+			sourceTree = "<group>";
+		};
+		837121D12E327AA300DB2309 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				837121D22E327AB000DB2309 /* clock.mp3 */,
+				837121D32E327AB000DB2309 /* correctAnswer.mp3 */,
+				837121D42E327AB000DB2309 /* onWaitAnswer.mp3 */,
+				837121D52E327AB000DB2309 /* openMusic.mp3 */,
+				837121D62E327AB000DB2309 /* wrongAnswer.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		8373C8172E34C3F300D0F80C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */,
+				8373C8242E350D8300D0F80C /* StringExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8373C81A2E34C3F300D0F80C /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8373C8182E34C3F300D0F80C /* GameViewController.swift */,
+				8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
+		8373C8202E34C90C00D0F80C /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				671199DB2E33D96C00E34690 /* RulesViewController.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		83C2DF102E2E468A008EF248 = {
+			isa = PBXGroup;
+			children = (
+				F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */,
 				83C2DF502E2E4AF0008EF248 /* millionaireRush */,
 				83C2DF1A2E2E468A008EF248 /* Products */,
 			);
@@ -75,13 +180,19 @@
 		83C2DF502E2E4AF0008EF248 /* millionaireRush */ = {
 			isa = PBXGroup;
 			children = (
-				8352AD5B2E311FAF00F4084D /* Extensions */,
+				8373C8172E34C3F300D0F80C /* Extensions */,
+				8373C81A2E34C3F300D0F80C /* StartScreen */,
+				837121D12E327AA300DB2309 /* Sounds */,
+				837121CD2E32773400DB2309 /* SoundManager */,
+				837121C82E32748000DB2309 /* NetworkManager */,
+				837121CA2E32748000DB2309 /* ViewModel */,
+				8352AD5A2E31108500F4084D /* Views */,
 				83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */,
-				83C2DF482E2E4AF0008EF248 /* Assets.xcassets */,
+				8373C81E2E34C8EA00D0F80C /* Assets.xcassets */,
 				83C2DF492E2E4AF0008EF248 /* Info.plist */,
 				83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */,
 				83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */,
-				8352AD5E2E31301E00F4084D /* StartScreen */,
+				8373C8202E34C90C00D0F80C /* Rules */,
 			);
 			path = millionaireRush;
 			sourceTree = "<group>";
@@ -147,7 +258,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */,
+				837121D72E327AB000DB2309 /* onWaitAnswer.mp3 in Resources */,
+				837121D82E327AB000DB2309 /* openMusic.mp3 in Resources */,
+				8373C81F2E34C8EA00D0F80C /* Assets.xcassets in Resources */,
+				837121D92E327AB000DB2309 /* wrongAnswer.mp3 in Resources */,
+				837121DA2E327AB000DB2309 /* clock.mp3 in Resources */,
+				837121DB2E327AB000DB2309 /* correctAnswer.mp3 in Resources */,
 				83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +280,18 @@
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				83C2DF532E2E4AF0008EF248 /* StartEndScreenVC.swift in Sources */,
+				671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */,
+				8373C81B2E34C3F300D0F80C /* GameViewController.swift in Sources */,
+				8373C81C2E34C3F300D0F80C /* StartEndScreenVC.swift in Sources */,
+				8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */,
+				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
+				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
+				F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */,
+				8373C8252E350D9200D0F80C /* StringExtensions.swift in Sources */,
+				8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */,
+				837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */,
+				837121CF2E32774600DB2309 /* SoundManager.swift in Sources */,
+				837121CC2E32748000DB2309 /* NetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +323,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -223,7 +351,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
