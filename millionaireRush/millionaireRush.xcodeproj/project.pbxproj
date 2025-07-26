@@ -17,6 +17,9 @@
 		837121D92E327AB000DB2309 /* wrongAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D62E327AB000DB2309 /* wrongAnswer.mp3 */; };
 		837121DA2E327AB000DB2309 /* clock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D22E327AB000DB2309 /* clock.mp3 */; };
 		837121DB2E327AB000DB2309 /* correctAnswer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 837121D32E327AB000DB2309 /* correctAnswer.mp3 */; };
+		8373C81B2E34C3F300D0F80C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8182E34C3F300D0F80C /* GameViewController.swift */; };
+		8373C81C2E34C3F300D0F80C /* StartEndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */; };
+		8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */; };
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
 		83C2DF532E2E4AF0008EF248 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */; };
@@ -35,6 +38,9 @@
 		837121D42E327AB000DB2309 /* onWaitAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = onWaitAnswer.mp3; sourceTree = "<group>"; };
 		837121D52E327AB000DB2309 /* openMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = openMusic.mp3; sourceTree = "<group>"; };
 		837121D62E327AB000DB2309 /* wrongAnswer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongAnswer.mp3; sourceTree = "<group>"; };
+		8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
+		8373C8182E34C3F300D0F80C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEndScreenVC.swift; sourceTree = "<group>"; };
 		83C2DF192E2E468A008EF248 /* millionaireRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = millionaireRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83C2DF482E2E4AF0008EF248 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +105,23 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		8373C8172E34C3F300D0F80C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8373C81A2E34C3F300D0F80C /* StartScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8373C8182E34C3F300D0F80C /* GameViewController.swift */,
+				8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */,
+			);
+			path = StartScreen;
+			sourceTree = "<group>";
+		};
 		83C2DF102E2E468A008EF248 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +141,8 @@
 		83C2DF502E2E4AF0008EF248 /* millionaireRush */ = {
 			isa = PBXGroup;
 			children = (
+				8373C8172E34C3F300D0F80C /* Extensions */,
+				8373C81A2E34C3F300D0F80C /* StartScreen */,
 				837121D12E327AA300DB2309 /* Sounds */,
 				837121CD2E32773400DB2309 /* SoundManager */,
 				837121C82E32748000DB2309 /* NetworkManager */,
@@ -213,6 +238,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */,
+				8373C81B2E34C3F300D0F80C /* GameViewController.swift in Sources */,
+				8373C81C2E34C3F300D0F80C /* StartEndScreenVC.swift in Sources */,
+				8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */,
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */,
