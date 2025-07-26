@@ -173,10 +173,6 @@ class StartEndScreenVC: UIViewController {
             continueButton.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -16),
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-//            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
-//            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
-//            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-//            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             allTimeScoreTextLabel.heightAnchor.constraint(equalToConstant: 19),
             allTimeScoreTextLabel.bottomAnchor.constraint(equalTo: scoreLabelStack.topAnchor, constant: -8),
             allTimeScoreTextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
@@ -187,6 +183,10 @@ class StartEndScreenVC: UIViewController {
             scoreLabelStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -125),
             coinImage.heightAnchor.constraint(equalToConstant: 32),
             coinImage.widthAnchor.constraint(equalToConstant: 32)
+            //            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
+            //            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
+            //            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            //            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
         ])
     }
     
