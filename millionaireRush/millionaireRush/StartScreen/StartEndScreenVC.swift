@@ -81,12 +81,12 @@ class StartEndScreenVC: UIViewController {
         return logoImageView
     }()
     
-    private lazy var helpButton: UIButton = {
+    private lazy var rulesButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "questionmark.circle.fill"), for: .normal)
         button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(pressedHelpButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(pressedRulesButton), for: .touchUpInside)
         return button
     }()
         
@@ -139,7 +139,7 @@ class StartEndScreenVC: UIViewController {
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        [backgroundImageView, startButton, textLabel, logoMillionare, helpButton,continueButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack].forEach( {view.addSubview($0) })
+        [backgroundImageView, startButton, textLabel, logoMillionare, rulesButton,continueButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack].forEach( {view.addSubview($0) })
         scoreLabelStack.addArrangedSubview(coinImage)
         scoreLabelStack.addArrangedSubview(allTimeScoreLabel)
         setupConstaints()
@@ -169,10 +169,10 @@ class StartEndScreenVC: UIViewController {
             logoMillionare.widthAnchor.constraint(equalToConstant: 250),
             logoMillionare.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoMillionare.bottomAnchor.constraint(equalTo: textLabel.topAnchor, constant: -16),
-            helpButton.heightAnchor.constraint(equalToConstant: 32),
-            helpButton.widthAnchor.constraint(equalToConstant: 32),
-            helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            helpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
+            rulesButton.heightAnchor.constraint(equalToConstant: 32),
+            rulesButton.widthAnchor.constraint(equalToConstant: 32),
+            rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            rulesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
             continueButton.heightAnchor.constraint(equalToConstant: 62),
             continueButton.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -16),
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
@@ -223,8 +223,10 @@ class StartEndScreenVC: UIViewController {
         print("Continue game")
     }
     
-    @objc func pressedHelpButton(_ sender: UIButton) {
-        print("help is help")
+    @objc func pressedRulesButton(_ sender: UIButton) {
+        let rules = RulesViewController()
+        let navController = UINavigationController(rootViewController: rules)
+        present(navController, animated: true, completion: nil)
     }
 }
   

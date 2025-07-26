@@ -20,10 +20,9 @@
 		8373C81B2E34C3F300D0F80C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8182E34C3F300D0F80C /* GameViewController.swift */; };
 		8373C81C2E34C3F300D0F80C /* StartEndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */; };
 		8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */; };
+		8373C81F2E34C8EA00D0F80C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8373C81E2E34C8EA00D0F80C /* Assets.xcassets */; };
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
-		83C2DF532E2E4AF0008EF248 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */; };
-		83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF482E2E4AF0008EF248 /* Assets.xcassets */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -41,13 +40,12 @@
 		8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		8373C8182E34C3F300D0F80C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEndScreenVC.swift; sourceTree = "<group>"; };
+		8373C81E2E34C8EA00D0F80C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83C2DF192E2E468A008EF248 /* millionaireRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = millionaireRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		83C2DF482E2E4AF0008EF248 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C2DF4A2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +120,14 @@
 			path = StartScreen;
 			sourceTree = "<group>";
 		};
+		8373C8202E34C90C00D0F80C /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				671199DB2E33D96C00E34690 /* RulesViewController.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
 		83C2DF102E2E468A008EF248 = {
 			isa = PBXGroup;
 			children = (
@@ -149,12 +155,11 @@
 				837121CA2E32748000DB2309 /* ViewModel */,
 				8352AD5A2E31108500F4084D /* Views */,
 				83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */,
-				83C2DF482E2E4AF0008EF248 /* Assets.xcassets */,
+				8373C81E2E34C8EA00D0F80C /* Assets.xcassets */,
 				83C2DF492E2E4AF0008EF248 /* Info.plist */,
 				83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */,
 				83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */,
-				83C2DF4F2E2E4AF0008EF248 /* ViewController.swift */,
-				671199DB2E33D96C00E34690 /* RulesViewController.swift */,
+				8373C8202E34C90C00D0F80C /* Rules */,
 			);
 			path = millionaireRush;
 			sourceTree = "<group>";
@@ -222,10 +227,10 @@
 			files = (
 				837121D72E327AB000DB2309 /* onWaitAnswer.mp3 in Resources */,
 				837121D82E327AB000DB2309 /* openMusic.mp3 in Resources */,
+				8373C81F2E34C8EA00D0F80C /* Assets.xcassets in Resources */,
 				837121D92E327AB000DB2309 /* wrongAnswer.mp3 in Resources */,
 				837121DA2E327AB000DB2309 /* clock.mp3 in Resources */,
 				837121DB2E327AB000DB2309 /* correctAnswer.mp3 in Resources */,
-				83C2DF542E2E4AF0008EF248 /* Assets.xcassets in Resources */,
 				83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,7 +249,6 @@
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */,
-				83C2DF532E2E4AF0008EF248 /* ViewController.swift in Sources */,
 				837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */,
 				837121CF2E32774600DB2309 /* SoundManager.swift in Sources */,
 				837121CC2E32748000DB2309 /* NetworkManager.swift in Sources */,
