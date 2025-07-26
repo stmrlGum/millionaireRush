@@ -27,22 +27,19 @@ class RulesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.250951618, green: 0.2677560449, blue: 0.3410356045, alpha: 1)
         view.addSubview(textView)
-        
         setupTextContent()
         setupConstraints()
         setupCloseButton()
         title = "Rules"
         
         if let navBar = navigationController?.navigationBar {
-                // Убираем фон
                 navBar.setBackgroundImage(UIImage(), for: .default)
-                navBar.shadowImage = UIImage() // убираем нижнюю тень
-                navBar.isTranslucent = true    // делаем прозрачным
+                navBar.shadowImage = UIImage()
+                navBar.isTranslucent = true
                 navBar.backgroundColor = .clear
                 
-                // Цвет заголовка
                 navBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-                navBar.tintColor = .white // цвет кнопки "Done"
+                navBar.tintColor = .white
             }
     }
     

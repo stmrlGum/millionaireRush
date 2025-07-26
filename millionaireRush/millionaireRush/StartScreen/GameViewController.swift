@@ -100,6 +100,7 @@ class GameViewController: UIViewController {
     private lazy var returnButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named:"arrow_back"), for: .normal)
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -115,6 +116,27 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         [backgroundImageView, callButton, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
         setupConstraints()
+        setupGame()
+    }
+    
+    private func setupGame() {
+        currentQuestionIndex = 0
+        showQuestion()
+    }
+
+    private func showQuestion() {
+        guard currentQuestionIndex < questions!.count else {
+                questionLabel.text = "Congratulations! You've finished the game!"
+                [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isHidden = true }
+                return
+            }
+        let question = questions![currentQuestionIndex]
+            questionLabel.text = question.question.removingHTMLEntities()
+            let allAnswers = ([question.correctAnswer] + question.incorrectAnswers).shuffled()
+            firstAnswerButton.setTitle(allAnswers[0], for: .normal)
+            secondAnswerButton.setTitle(allAnswers[1], for: .normal)
+            thirdAnswerButton.setTitle(allAnswers[2], for: .normal)
+            fourthAnswerButton.setTitle(allAnswers[3], for: .normal)
     }
     
     
@@ -165,15 +187,37 @@ class GameViewController: UIViewController {
     }
     
     @objc func pressedAnswerButton(_ sender: UIButton) {
-        
-        
-        
+        guard currentQuestionIndex < questions!.count else { return }
+
+        let selectedAnswer = sender.title(for: .normal)
+        let correctAnswer = questions![currentQuestionIndex].correctAnswer
+
+        if selectedAnswer == correctAnswer {
+            sender.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                [self.firstAnswerButton, self.secondAnswerButton, self.thirdAnswerButton, self.fourthAnswerButton].forEach {
+                    $0.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
+                }
+                currentQuestionIndex += 1
+                self.showQuestion()
+            }
+        } else {
+            sender.setBackgroundImage(UIImage(named: "redButton"), for: .normal)
+            print("stop game")
+            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].first {
+                $0.title(for: .normal) == correctAnswer
+            }?.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
+        }
     }
     
     @objc func pressedSecondaryButton(_ sender: UIButton) {
         
         sender.isEnabled = false
         sender.alpha = 0.5
+    }
+    
+    @objc func close() {
+        dismiss(animated: true)
     }
     
 }

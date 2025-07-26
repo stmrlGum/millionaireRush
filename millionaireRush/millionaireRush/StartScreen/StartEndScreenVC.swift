@@ -8,6 +8,9 @@
 import UIKit
 import Foundation
 
+var questions: [QuestionVM]?
+var currentQuestionIndex = 0
+
 enum StartEndScreenState {
     case firstStart
     case gameInProgress
@@ -216,6 +219,18 @@ class StartEndScreenVC: UIViewController {
     @objc func pressedStartButton(_ sender: UIButton) {
         sender.changeState()
         print("New game")
+        NetworkManager.shared.getData { [weak self] result in
+            switch result {
+            case .success(let json):
+                let question = MillionareVM(json: json)
+                questions = question.results
+                    DispatchQueue.main.async {
+                        self?.openGame()
+                    }
+            case .failure(let error):
+                debugPrint("Ошибка при получении данных: \(error)")
+            }
+        }
     }
     
     @objc func pressedContinueButton(_ sender: UIButton) {
@@ -227,6 +242,12 @@ class StartEndScreenVC: UIViewController {
         let rules = RulesViewController()
         let navController = UINavigationController(rootViewController: rules)
         present(navController, animated: true, completion: nil)
+    }
+    
+    func openGame() {
+        let gameVC = GameViewController()
+        gameVC.modalPresentationStyle = .fullScreen
+        present(gameVC, animated: true)
     }
 }
   
