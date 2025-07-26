@@ -149,6 +149,10 @@ class StartEndScreenVC: UIViewController {
     //MARK: Private Methods
     private func setupConstaints(){
         NSLayoutConstraint.activate([
+            //            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
+            //            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
+            //            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            //            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -183,10 +187,6 @@ class StartEndScreenVC: UIViewController {
             scoreLabelStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -125),
             coinImage.heightAnchor.constraint(equalToConstant: 32),
             coinImage.widthAnchor.constraint(equalToConstant: 32)
-            //            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
-            //            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
-            //            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            //            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
         ])
     }
     
