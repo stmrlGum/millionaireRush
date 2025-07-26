@@ -1,5 +1,5 @@
 //
-//  StartEndScreenVC.swift
+//  StartScreenVC.swift
 //  millionaireRush
 //
 //  Created by Danil on 21.07.2025.
@@ -11,19 +11,19 @@ import Foundation
 var questions: [QuestionVM]?
 var currentQuestionIndex = 0
 
-enum StartEndScreenState {
+enum StartScreenState {
     case firstStart
     case gameInProgress
     case noGameWithHighScore
 }
 
-class StartEndScreenVC: UIViewController {
+class StartScreenVC: UIViewController {
     
     
     var bestScore: Int = 15000 // MARK: TEMP HARDCODE
     var hasSavedGame: Bool = true
     
-    var currentState: StartEndScreenState {
+    var currentState: StartScreenState {
         if hasSavedGame {
             return .gameInProgress
         } else if bestScore > 0 {
@@ -168,8 +168,8 @@ class StartEndScreenVC: UIViewController {
             textLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             textLabel.bottomAnchor.constraint(equalTo: allTimeScoreTextLabel.topAnchor, constant: -16),
-            logoMillionare.heightAnchor.constraint(equalToConstant: 250),
-            logoMillionare.widthAnchor.constraint(equalToConstant: 250),
+            logoMillionare.heightAnchor.constraint(equalToConstant: 195),
+            logoMillionare.widthAnchor.constraint(equalToConstant: 195),
             logoMillionare.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoMillionare.bottomAnchor.constraint(equalTo: textLabel.topAnchor, constant: -16),
             rulesButton.heightAnchor.constraint(equalToConstant: 32),
@@ -177,7 +177,7 @@ class StartEndScreenVC: UIViewController {
             rulesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             rulesButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
             continueButton.heightAnchor.constraint(equalToConstant: 62),
-            continueButton.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -16),
+            continueButton.bottomAnchor.constraint(equalTo: startButton.topAnchor, constant: -10),
             continueButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             continueButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             allTimeScoreTextLabel.heightAnchor.constraint(equalToConstant: 19),
@@ -193,7 +193,7 @@ class StartEndScreenVC: UIViewController {
         ])
     }
     
-    private func updateUI(for state: StartEndScreenState) {
+    private func updateUI(for state: StartScreenState) {
         
         switch state {
         case .firstStart:
@@ -218,14 +218,15 @@ class StartEndScreenVC: UIViewController {
     
     @objc func pressedStartButton(_ sender: UIButton) {
         sender.changeState()
-        print("New game")
+        sender.isUserInteractionEnabled = false
         NetworkManager.shared.getData { [weak self] result in
             switch result {
             case .success(let json):
                 let question = MillionareVM(json: json)
                 questions = question.results
                     DispatchQueue.main.async {
-                        self?.openGame()
+                        self?.openGame(isContinue: false)
+                        sender.isUserInteractionEnabled = true
                     }
             case .failure(let error):
                 debugPrint("Ошибка при получении данных: \(error)")
@@ -235,7 +236,7 @@ class StartEndScreenVC: UIViewController {
     
     @objc func pressedContinueButton(_ sender: UIButton) {
         sender.changeState()
-        print("Continue game")
+        openGame(isContinue: true)
     }
     
     @objc func pressedRulesButton(_ sender: UIButton) {
@@ -244,8 +245,9 @@ class StartEndScreenVC: UIViewController {
         present(navController, animated: true, completion: nil)
     }
     
-    func openGame() {
+    func openGame(isContinue: Bool) {
         let gameVC = GameViewController()
+        gameVC.isContunueGame = isContinue
         gameVC.modalPresentationStyle = .fullScreen
         present(gameVC, animated: true)
     }

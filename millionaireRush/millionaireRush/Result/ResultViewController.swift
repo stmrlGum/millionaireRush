@@ -1,11 +1,12 @@
 import UIKit
 
 class ResultViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
+    
+    let backgroundImageView = UIImageView()
     let tableView = UITableView()
     let logoImageView = UIImageView()
     let helpButton = UIButton()
-    let topBarView = UIView()
 
     let levels: [(number: Int, prize: String)] = [
         (15, "$1,000,000"),
@@ -27,29 +28,28 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     
     let guaranteedLevels = [15]
     var currentLevels = [10, 5]
-    var selectedLevel: Int? = nil
-
+    var selectedLevel: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
-        
-        setupTopBar()
+        selectedLevel = currentQuestionIndex + 1
+        setupBackground()
         setupLogoAndHelp()
         setupTableView()
     }
 
     // MARK: - UI Setup
-
-    func setupTopBar() {
-        topBarView.translatesAutoresizingMaskIntoConstraints = false
-        topBarView.backgroundColor = .clear
-        view.addSubview(topBarView)
-
+    
+    func setupBackground() {
+        backgroundImageView.image = UIImage(named: "background")
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(backgroundImageView)
         NSLayoutConstraint.activate([
-            topBarView.topAnchor.constraint(equalTo: view.topAnchor),
-            topBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            topBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topBarView.heightAnchor.constraint(equalToConstant: 44),
+            backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
 
@@ -67,12 +67,12 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         view.addSubview(helpButton)
 
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10),
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.heightAnchor.constraint(equalToConstant: 120),
-            logoImageView.widthAnchor.constraint(equalToConstant: 120),
+            logoImageView.heightAnchor.constraint(equalToConstant: 85),
+            logoImageView.widthAnchor.constraint(equalToConstant: 85),
 
-            helpButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            helpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
             helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             helpButton.heightAnchor.constraint(equalToConstant: 30),
             helpButton.widthAnchor.constraint(equalToConstant: 30),
@@ -81,10 +81,11 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
 
     func setupTableView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .blue
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 99),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -101,7 +102,9 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
 
 
     @objc func helpButtonTapped() {
-        print("Help button pressed")
+        let endVC = EndScreenVC()
+        endVC.modalPresentationStyle = .fullScreen
+        present(endVC, animated: true)
     }
 
     // MARK: - UITableViewDataSource
@@ -122,10 +125,10 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK: - UITableViewDelegate
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let level = levels[indexPath.row]
-        selectedLevel = level.number
-        tableView.reloadData()
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let level = levels[indexPath.row]
+//        selectedLevel = level.number
+//        tableView.reloadData()
+//    }
 }
 

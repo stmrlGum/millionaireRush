@@ -153,8 +153,8 @@ final class EndScreenVC: UIViewController {
             textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             textLabel.bottomAnchor.constraint(equalTo: allTimeScoreTextLabel.topAnchor, constant: -16),
 
-            logoMillionaire.heightAnchor.constraint(equalToConstant: 250),
-            logoMillionaire.widthAnchor.constraint(equalToConstant: 250),
+            logoMillionaire.heightAnchor.constraint(equalToConstant: 195),
+            logoMillionaire.widthAnchor.constraint(equalToConstant: 195),
             logoMillionaire.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoMillionaire.bottomAnchor.constraint(equalTo: textLabel.topAnchor, constant: -16),
 
@@ -178,18 +178,14 @@ final class EndScreenVC: UIViewController {
     @objc func pressedMainScreenButton(_ sender: UIButton) {
         sender.animateTapHighlight()
 
-        let mainVC = StartEndScreenVC()
-        //navigationController?.pushViewController(mainVC, animated: true)
+        let mainVC = StartScreenVC()
        
         setRootViewController(mainVC)
     }
 
     @objc func pressedNewGameButton(_ sender: UIButton) {
         sender.animateTapHighlight()
-
         let gameVC = GameViewController()
-            //navigationController?.pushViewController(gameVC, animated: true)
-        
             setRootViewController(gameVC)
         
     }

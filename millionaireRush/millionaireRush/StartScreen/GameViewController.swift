@@ -25,6 +25,12 @@ class GameViewController: UIViewController {
         return button
     }()
     
+    private lazy var timerView: StopwatchView = {
+        let timer = StopwatchView()
+        timer.translatesAutoresizingMaskIntoConstraints = false
+        return timer
+    }()
+    
     private lazy var audienceButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -108,23 +114,35 @@ class GameViewController: UIViewController {
     private lazy var barChartButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(named:"bar chart"), for: .normal)
+        button.addTarget(self, action: #selector(openResult), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    var isContunueGame: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        [backgroundImageView, callButton, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
+        [backgroundImageView, callButton, timerView, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
+        timerView.onFinish = {  [weak self] in
+            self?.questionLabel.text = "Game over! Time is up"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self?.openEndGame()
+            }
+        }
         setupConstraints()
         setupGame()
     }
     
     private func setupGame() {
-        currentQuestionIndex = 0
+        if !isContunueGame {
+            currentQuestionIndex = 0
+        }
         showQuestion()
     }
 
     private func showQuestion() {
+        timerView.start()
         guard currentQuestionIndex < questions!.count else {
                 questionLabel.text = "Congratulations! You've finished the game!"
                 [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isHidden = true }
@@ -149,6 +167,8 @@ class GameViewController: UIViewController {
             callButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             callButton.heightAnchor.constraint(equalToConstant: 64),
             callButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -37.5),
+            timerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 84),
             fiftyButton.heightAnchor.constraint(equalToConstant: 64),
             fiftyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             fiftyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 37.5),
@@ -203,7 +223,13 @@ class GameViewController: UIViewController {
             }
         } else {
             sender.setBackgroundImage(UIImage(named: "redButton"), for: .normal)
-            print("stop game")
+            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach {
+                $0.isUserInteractionEnabled = false
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.timerView.pause()
+                self.openEndGame()
+            }
             [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].first {
                 $0.title(for: .normal) == correctAnswer
             }?.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
@@ -220,4 +246,16 @@ class GameViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    func openEndGame() {
+        let endVC = EndScreenVC()
+        endVC.modalPresentationStyle = .fullScreen
+        present(endVC, animated: true)
+    }
+    
+    @objc func openResult() {
+        let resultVC = ResultViewController()
+        resultVC.selectedLevel = currentQuestionIndex
+        resultVC.modalPresentationStyle = .fullScreen
+        present(resultVC, animated: true)
+    }
 }
