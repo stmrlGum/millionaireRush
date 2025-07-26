@@ -24,6 +24,7 @@
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
+		F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83C2DF4A2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScreenVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		83C2DF102E2E468A008EF248 = {
 			isa = PBXGroup;
 			children = (
+				F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */,
 				83C2DF502E2E4AF0008EF248 /* millionaireRush */,
 				83C2DF1A2E2E468A008EF248 /* Products */,
 			);
@@ -248,6 +251,7 @@
 				8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */,
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
+				F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */,
 				8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */,
 				837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */,
 				837121CF2E32774600DB2309 /* SoundManager.swift in Sources */,
