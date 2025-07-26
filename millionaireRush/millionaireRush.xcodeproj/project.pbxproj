@@ -21,6 +21,7 @@
 		8373C81C2E34C3F300D0F80C /* StartEndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */; };
 		8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */; };
 		8373C81F2E34C8EA00D0F80C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8373C81E2E34C8EA00D0F80C /* Assets.xcassets */; };
+		8373C8252E350D9200D0F80C /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8242E350D8300D0F80C /* StringExtensions.swift */; };
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 		8373C8182E34C3F300D0F80C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8373C8192E34C3F300D0F80C /* StartEndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartEndScreenVC.swift; sourceTree = "<group>"; };
 		8373C81E2E34C8EA00D0F80C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8373C8242E350D8300D0F80C /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		83C2DF192E2E468A008EF248 /* millionaireRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = millionaireRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				8373C8162E34C3F300D0F80C /* UIButtonExtensions.swift */,
+				8373C8242E350D8300D0F80C /* StringExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */,
+				8373C8252E350D9200D0F80C /* StringExtensions.swift in Sources */,
 				8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */,
 				837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */,
 				837121CF2E32774600DB2309 /* SoundManager.swift in Sources */,

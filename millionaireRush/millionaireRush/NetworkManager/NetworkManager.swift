@@ -9,7 +9,9 @@ import Foundation
 
 class NetworkManager {
     
-    let url = "https://opentdb.com/api.php?amount=15"
+    let url = "https://opentdb.com/api.php?amount=15&type=multiple"
+    
+    static let shared = NetworkManager()
     
 
     func getData(completion: @escaping (Result<[String: Any], Error>) -> Void) {
@@ -37,17 +39,3 @@ class NetworkManager {
     }
 
 }
-
-// MARK: HOW TO USE
-/*
- NetworkManager().getData { [weak self] result in
-     switch result {
-     case .success(let json):
-         let viewModel = MillionareVM(json: json)
-         print(viewModel)
-         
-     case .failure(let error):
-         print("Ошибка при получении данных: \(error)")
-     }
- }
- */
