@@ -4,6 +4,7 @@ millionaireRush - игра под iOS, созданная в рамках мар
 
 [00giemensch](https://github.com/00giemensch)  
 Ильнур, изучаю Swift год
+Умеет верстать кодом: Да
 
 [IschenkoAlex](https://github.com/IschenkoAlex)  
 Александр, изучаю Swift месяца 2–3  
