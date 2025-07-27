@@ -6,7 +6,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     let backgroundImageView = UIImageView()
     let tableView = UITableView()
     let logoImageView = UIImageView()
-    let helpButton = UIButton()
+    let putMoneyButton = UIButton()
 
     let levels: [(number: Int, prize: String)] = [
         (15, "$1,000,000"),
@@ -59,12 +59,11 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         logoImageView.image = UIImage(named: "logo")
         logoImageView.layer.zPosition = 60
         view.addSubview(logoImageView)
-        
-        helpButton.translatesAutoresizingMaskIntoConstraints = false
-        helpButton.setImage(UIImage(named: "withdrawal"), for: .normal)
-        helpButton.tintColor = .white
-        helpButton.addTarget(self, action: #selector(helpButtonTapped), for: .touchUpInside)
-        view.addSubview(helpButton)
+        putMoneyButton.translatesAutoresizingMaskIntoConstraints = false
+        putMoneyButton.setImage(UIImage(named: "withdrawal"), for: .normal)
+        putMoneyButton.tintColor = .white
+        putMoneyButton.addTarget(self, action: #selector(putMoneyButtonTapped), for: .touchUpInside)
+        view.addSubview(putMoneyButton)
 
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 32),
@@ -72,10 +71,10 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
             logoImageView.heightAnchor.constraint(equalToConstant: 85),
             logoImageView.widthAnchor.constraint(equalToConstant: 85),
 
-            helpButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
-            helpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            helpButton.heightAnchor.constraint(equalToConstant: 30),
-            helpButton.widthAnchor.constraint(equalToConstant: 30),
+            putMoneyButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 76),
+            putMoneyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            putMoneyButton.heightAnchor.constraint(equalToConstant: 30),
+            putMoneyButton.widthAnchor.constraint(equalToConstant: 30),
         ])
     }
 
@@ -100,8 +99,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.backgroundColor = .clear
     }
 
-
-    @objc func helpButtonTapped() {
+    @objc func putMoneyButtonTapped() {
         let endVC = EndScreenVC()
         print(selectedLevel!, levels[selectedLevel!].prize)
         let levelIndex = levels.firstIndex { $0.number == selectedLevel! } ?? 0
@@ -126,13 +124,5 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         cell.configure(number: level.number, prize: level.prize, isCurrent: isCurrent, isGuaranteed: isGuaranteed, isSelected: isSelected)
         return cell
     }
-    
-    // MARK: - UITableViewDelegate
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let level = levels[indexPath.row]
-//        selectedLevel = level.number
-//        tableView.reloadData()
-//    }
 }
 

@@ -20,7 +20,7 @@ enum StartScreenState {
 class StartScreenVC: UIViewController {
     
     
-    var bestScore: Int = 15000 // MARK: TEMP HARDCODE
+    var bestScore: Int = 0
     var hasSavedGame: Bool = false
     
     var currentState: StartScreenState {

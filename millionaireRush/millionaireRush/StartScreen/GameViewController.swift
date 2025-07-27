@@ -161,7 +161,6 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(questions)
         [backgroundImageView, numberOfQuestion, costLabel, callButton, timerView, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
         timerView.onFinish = {  [weak self] in
             self?.questionLabel.text = "Game over! Time is up"
