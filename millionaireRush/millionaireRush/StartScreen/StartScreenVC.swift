@@ -9,7 +9,7 @@ import UIKit
 import Foundation
 
 var questions: [QuestionVM]?
-var currentQuestionIndex = 0
+var currentQuestionIndex: Int?
 
 enum StartScreenState {
     case firstStart
@@ -21,7 +21,7 @@ class StartScreenVC: UIViewController {
     
     
     var bestScore: Int = 15000 // MARK: TEMP HARDCODE
-    var hasSavedGame: Bool = true
+    var hasSavedGame: Bool = false
     
     var currentState: StartScreenState {
         if hasSavedGame {
@@ -147,15 +147,18 @@ class StartScreenVC: UIViewController {
         scoreLabelStack.addArrangedSubview(allTimeScoreLabel)
         setupConstaints()
         updateUI(for: currentState)
+        SoundManager.shared.playSound(sound: .openMusic)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if currentQuestionIndex != nil {
+            updateUI(for: .gameInProgress)
+        }
     }
     
     //MARK: Private Methods
     private func setupConstaints(){
         NSLayoutConstraint.activate([
-            //            allTimeScoreLabel.heightAnchor.constraint(equalToConstant: 32),
-            //            allTimeScoreLabel.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
-            //            allTimeScoreLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-            //            allTimeScoreLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -185,7 +188,6 @@ class StartScreenVC: UIViewController {
             allTimeScoreTextLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
             allTimeScoreTextLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             scoreLabelStack.heightAnchor.constraint(equalToConstant: 32),
-            scoreLabelStack.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -78),
             scoreLabelStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 125),
             scoreLabelStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -125),
             coinImage.heightAnchor.constraint(equalToConstant: 32),
@@ -206,6 +208,7 @@ class StartScreenVC: UIViewController {
             ])
             
         case .gameInProgress:
+            continueButton.isHidden = false
             startButton.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
             
         case .noGameWithHighScore:
@@ -229,9 +232,16 @@ class StartScreenVC: UIViewController {
                         sender.isUserInteractionEnabled = true
                     }
             case .failure(let error):
-                debugPrint("Ошибка при получении данных: \(error)")
+                debugPrint("Error: \(error)")
+                DispatchQueue.main.async {
+                    sender.isUserInteractionEnabled = true
+                    let alert = UIAlertController(title: "Bad request", message: "Bad internet connection, check connection and turn off VPN", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "ОК", style: .default))
+                    self?.present(alert, animated: true)
+                }
             }
         }
+        
     }
     
     @objc func pressedContinueButton(_ sender: UIButton) {

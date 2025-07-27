@@ -33,7 +33,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
-        selectedLevel = currentQuestionIndex + 1
+        selectedLevel = currentQuestionIndex! + 1
         setupBackground()
         setupLogoAndHelp()
         setupTableView()
@@ -103,6 +103,10 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
 
     @objc func helpButtonTapped() {
         let endVC = EndScreenVC()
+        print(selectedLevel!, levels[selectedLevel!].prize)
+        let levelIndex = levels.firstIndex { $0.number == selectedLevel! } ?? 0
+        endVC.level = selectedLevel!
+        endVC.score = levels[levelIndex].prize
         endVC.modalPresentationStyle = .fullScreen
         present(endVC, animated: true)
     }

@@ -18,6 +18,8 @@ enum Sound: String {
 
 class SoundManager {
     
+    static let shared = SoundManager()
+    
     var player: AVAudioPlayer?
 
     func playSound(sound: Sound) {
@@ -34,6 +36,14 @@ class SoundManager {
         } catch let error {
             print(error.localizedDescription)
         }
+    }
+    
+    func pauseSound() {
+        self.player?.pause()
+    }
+    
+    func continueSound() {
+        self.player?.play()
     }
 }
 

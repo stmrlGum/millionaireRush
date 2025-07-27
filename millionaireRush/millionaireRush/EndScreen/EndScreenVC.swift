@@ -10,7 +10,7 @@ import UIKit
 final class EndScreenVC: UIViewController {
 
     // MARK: - Public Props (устанавливаются до появления экрана)
-    var score: Int = 0       // передаётся из предыдущего экрана
+    var score: String = ""      // передаётся из предыдущего экрана
     var level: Int = 0        // передаётся из предыдущего экрана
 
     // MARK: - UI Элементы
@@ -109,7 +109,7 @@ final class EndScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-
+        
         [backgroundImageView, mainScreenButton, textLabel, logoMillionaire,
          newGameButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack]
             .forEach { view.addSubview($0) }
@@ -126,7 +126,7 @@ final class EndScreenVC: UIViewController {
 
     private func configureUI() {
         allTimeScoreTextLabel.text = "Level \(level)"
-        allTimeScoreLabel.text = "$\(score)"
+        allTimeScoreLabel.text = "\(score)"
     }
 
     // MARK: - Constraints
@@ -176,20 +176,42 @@ final class EndScreenVC: UIViewController {
     // MARK: - Действия кнопок
 
     @objc func pressedMainScreenButton(_ sender: UIButton) {
-        sender.animateTapHighlight()
+        sender.changeState()
 
         let mainVC = StartScreenVC()
-       
+        currentQuestionIndex = nil
         setRootViewController(mainVC)
     }
 
     @objc func pressedNewGameButton(_ sender: UIButton) {
-        sender.animateTapHighlight()
-        let gameVC = GameViewController()
-            setRootViewController(gameVC)
+        sender.changeState()
+        NetworkManager.shared.getData { [weak self] result in
+            switch result {
+            case .success(let json):
+                let question = MillionareVM(json: json)
+                questions = question.results
+                    DispatchQueue.main.async {
+                        self?.openGame(isContinue: false)
+                        sender.isUserInteractionEnabled = true
+                    }
+            case .failure(let error):
+                debugPrint("Error: \(error)")
+                sender.isUserInteractionEnabled = true
+                let alert = UIAlertController(title: "Bad request", message: "Bad internet connection, check connection and turn off VPN", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "ОК", style: .default))
+                self?.present(alert, animated: true)
+            }
+        }
+        
         
     }
 
+    func openGame(isContinue: Bool) {
+        let gameVC = GameViewController()
+        gameVC.isContunueGame = isContinue
+        gameVC.modalPresentationStyle = .fullScreen
+        present(gameVC, animated: true)
+    }
     
     func setRootViewController(_ vc: UIViewController) {
         guard let windowScene = UIApplication.shared.connectedScenes
@@ -206,17 +228,5 @@ final class EndScreenVC: UIViewController {
                           options: .transitionCrossDissolve,
                           animations: nil,
                           completion: nil)
-    }
-}
-
-
-extension UIButton {
-    func animateTapHighlight() {
-        let originalImage = self.backgroundImage(for: .normal)
-        self.setBackgroundImage(UIImage(named: "yellowButton"), for: .normal)
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-            self.setBackgroundImage(originalImage, for: .normal)
-        }
     }
 }

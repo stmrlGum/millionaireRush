@@ -21,7 +21,7 @@ class GameViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(named: "call"), for: .normal)
-        button.addTarget(self, action: #selector(pressedSecondaryButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(callHint), for: .touchUpInside)
         return button
     }()
     
@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(named: "audience"), for: .normal)
-        button.addTarget(self, action: #selector(pressedSecondaryButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(audienceHint), for: .touchUpInside)
         return button
     }()
     
@@ -43,7 +43,7 @@ class GameViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(named: "50_50"), for: .normal)
-        button.addTarget(self, action: #selector(pressedSecondaryButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(fiftyHint), for: .touchUpInside)
         return button
     }()
     
@@ -93,7 +93,6 @@ class GameViewController: UIViewController {
     
     private lazy var questionLabel: UILabel = {
         let label = UILabel()
-        label.text = "hello millionare"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.textColor = .white
         label.numberOfLines = 0
@@ -119,11 +118,51 @@ class GameViewController: UIViewController {
         return button
     }()
     
+    private lazy var numberOfQuestion: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.text = "QUESTION #1"
+        label.textColor = .white
+        label.alpha = 0.5
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var costLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 18, weight: .semibold)
+        label.text = "$500"
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
+    
     var isContunueGame: Bool = false
+    
+    let levels: [(number: Int, prize: String)] = [
+        (15, "$1,000,000"),
+        (14, "$500,000"),
+        (13, "$250,000"),
+        (12, "$100,000"),
+        (11, "$50,000"),
+        (10, "$25,000"),
+        (9, "$15,000"),
+        (8, "$12,500"),
+        (7, "$10,000"),
+        (6, "$7,500"),
+        (5, "$5,000"),
+        (4, "$3,000"),
+        (3, "$2,000"),
+        (2, "$1,000"),
+        (1, "$500")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        [backgroundImageView, callButton, timerView, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
+        print(questions)
+        [backgroundImageView, numberOfQuestion, costLabel, callButton, timerView, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
         timerView.onFinish = {  [weak self] in
             self?.questionLabel.text = "Game over! Time is up"
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
@@ -132,6 +171,7 @@ class GameViewController: UIViewController {
         }
         setupConstraints()
         setupGame()
+        SoundManager.shared.playSound(sound: .clock)
     }
     
     private func setupGame() {
@@ -143,18 +183,35 @@ class GameViewController: UIViewController {
 
     private func showQuestion() {
         timerView.start()
-        guard currentQuestionIndex < questions!.count else {
-                questionLabel.text = "Congratulations! You've finished the game!"
-                [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isHidden = true }
-                return
+        
+        [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { button in
+            button.isHidden = false
+            button.isEnabled = true
+            button.alpha = 1.0
+        }
+        
+        if let level = levels.first(where: { $0.number == currentQuestionIndex! + 1 }) {
+            numberOfQuestion.text = "QUESTION #\(level.number)"
+            costLabel.text = level.prize
+        }
+        
+        guard currentQuestionIndex! < questions!.count else {
+            questionLabel.text = "Congratulations! You've finished the game!"
+            self.timerView.pause()
+            SoundManager.shared.playSound(sound: .correctAnswer)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                self.openEndGame()
             }
-        let question = questions![currentQuestionIndex]
+            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isHidden = true }
+            return
+        }
+        let question = questions![currentQuestionIndex!]
             questionLabel.text = question.question.removingHTMLEntities()
             let allAnswers = ([question.correctAnswer] + question.incorrectAnswers).shuffled()
-            firstAnswerButton.setTitle(allAnswers[0], for: .normal)
-            secondAnswerButton.setTitle(allAnswers[1], for: .normal)
-            thirdAnswerButton.setTitle(allAnswers[2], for: .normal)
-            fourthAnswerButton.setTitle(allAnswers[3], for: .normal)
+            firstAnswerButton.setTitle(allAnswers[0].removingHTMLEntities(), for: .normal)
+            secondAnswerButton.setTitle(allAnswers[1].removingHTMLEntities(), for: .normal)
+            thirdAnswerButton.setTitle(allAnswers[2].removingHTMLEntities(), for: .normal)
+            fourthAnswerButton.setTitle(allAnswers[3].removingHTMLEntities(), for: .normal)
     }
     
     
@@ -164,11 +221,17 @@ class GameViewController: UIViewController {
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            numberOfQuestion.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            numberOfQuestion.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            numberOfQuestion.heightAnchor.constraint(equalToConstant: 19),
+            costLabel.topAnchor.constraint(equalTo: numberOfQuestion.bottomAnchor, constant: 0),
+            costLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            costLabel.heightAnchor.constraint(equalToConstant: 21),
             callButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             callButton.heightAnchor.constraint(equalToConstant: 64),
             callButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -37.5),
             timerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 84),
+            timerView.topAnchor.constraint(equalTo: costLabel.bottomAnchor, constant: 32),
             fiftyButton.heightAnchor.constraint(equalToConstant: 64),
             fiftyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
             fiftyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 37.5),
@@ -207,27 +270,33 @@ class GameViewController: UIViewController {
     }
     
     @objc func pressedAnswerButton(_ sender: UIButton) {
-        guard currentQuestionIndex < questions!.count else { return }
+        guard currentQuestionIndex! < questions!.count else { return }
 
         let selectedAnswer = sender.title(for: .normal)
-        let correctAnswer = questions![currentQuestionIndex].correctAnswer
+        let correctAnswer = questions![currentQuestionIndex!].correctAnswer
 
         if selectedAnswer == correctAnswer {
             sender.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            SoundManager.shared.playSound(sound: .correctAnswer)
+            self.timerView.pause()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                 [self.firstAnswerButton, self.secondAnswerButton, self.thirdAnswerButton, self.fourthAnswerButton].forEach {
                     $0.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
                 }
-                currentQuestionIndex += 1
+                SoundManager.shared.playSound(sound: .clock)
+                currentQuestionIndex! += 1
                 self.showQuestion()
             }
         } else {
             sender.setBackgroundImage(UIImage(named: "redButton"), for: .normal)
+            self.questionLabel.text = "Game over!"
+            SoundManager.shared.playSound(sound: .wrongAnswer)
+            self.returnButton.isHidden = true
             [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach {
                 $0.isUserInteractionEnabled = false
             }
+            self.timerView.pause()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.timerView.pause()
                 self.openEndGame()
             }
             [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].first {
@@ -236,26 +305,112 @@ class GameViewController: UIViewController {
         }
     }
     
-    @objc func pressedSecondaryButton(_ sender: UIButton) {
-        
+    func pressedSecondaryButton(_ sender: UIButton) {
         sender.isEnabled = false
         sender.alpha = 0.5
     }
     
     @objc func close() {
-        dismiss(animated: true)
+        let mainVC = StartScreenVC()
+        mainVC.modalPresentationStyle = .fullScreen
+        present(mainVC, animated: true)
     }
     
     func openEndGame() {
         let endVC = EndScreenVC()
+        print(currentQuestionIndex! + 1)
+        endVC.level = currentQuestionIndex! + 1
+        if currentQuestionIndex! + 1 >= 10 {
+            endVC.score = "$25,000"
+        } else if currentQuestionIndex! + 1 >= 5 {
+            endVC.score = "$5,000"
+        } else {
+            endVC.score = "$0"
+        }
         endVC.modalPresentationStyle = .fullScreen
         present(endVC, animated: true)
     }
+
     
     @objc func openResult() {
+        SoundManager.shared.pauseSound()
         let resultVC = ResultViewController()
         resultVC.selectedLevel = currentQuestionIndex
         resultVC.modalPresentationStyle = .fullScreen
         present(resultVC, animated: true)
+    }
+    
+    @objc func fiftyHint() {
+        pressedSecondaryButton(fiftyButton)
+
+        guard let question = questions?[currentQuestionIndex!] else { return }
+
+        let correct = question.correctAnswer
+        let allAnswers = [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton]
+        
+        let incorrectButtons = allAnswers.filter { $0.title(for: .normal) != correct }.shuffled()
+        incorrectButtons.prefix(2).forEach {
+            $0.isEnabled = false
+            $0.alpha = 0.5
+        }
+    }
+
+    
+    @objc func callHint() {
+        pressedSecondaryButton(callButton)
+
+        guard let question = questions?[currentQuestionIndex!] else { return }
+
+        let correctAnswer = question.correctAnswer
+        let allAnswers = [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton]
+
+        let correctButton = allAnswers.first { $0.title(for: .normal) == correctAnswer }
+
+        let suggestedAnswer: UIButton
+        if Bool.random(probability: 0.7), let correct = correctButton {
+            suggestedAnswer = correct
+        } else {
+            let wrongButtons = allAnswers.filter { $0.title(for: .normal) != correctAnswer }
+            suggestedAnswer = wrongButtons.randomElement()!
+        }
+
+        let alert = UIAlertController(title: "Call to friend", message: "Friend thing this is correnct answer: \"\(suggestedAnswer.title(for: .normal)!)\"", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        present(alert, animated: true)
+    }
+    
+    @objc func audienceHint() {
+        pressedSecondaryButton(audienceButton)
+
+        guard let question = questions?[currentQuestionIndex!] else { return }
+
+        let correctAnswer = question.correctAnswer
+        let allAnswers = [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton]
+
+        var votes = [UIButton: Int]()
+        var totalVotes = 100
+        let correctVotes = Bool.random(probability: 0.7) ? Int.random(in: 45...70) : Int.random(in: 10...30)
+        totalVotes -= correctVotes
+
+        if let correctButton = allAnswers.first(where: { $0.title(for: .normal) == correctAnswer }) {
+            votes[correctButton] = correctVotes
+        }
+        let otherButtons = allAnswers.filter { $0.title(for: .normal) != correctAnswer }.shuffled()
+        for (index, button) in otherButtons.enumerated() {
+            if index == otherButtons.count - 1 {
+                votes[button] = totalVotes
+            } else {
+                let v = Int.random(in: 0...(totalVotes / 2))
+                votes[button] = v
+                totalVotes -= v
+            }
+        }
+        let message = votes.map {
+            "\($0.key.title(for: .normal)!): \($0.value)%"
+        }.joined(separator: "\n")
+
+        let alert = UIAlertController(title: "Vote of people", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        present(alert, animated: true)
     }
 }
