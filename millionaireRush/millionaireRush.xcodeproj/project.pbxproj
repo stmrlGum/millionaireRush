@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671199DB2E33D96C00E34690 /* RulesViewController.swift */; };
+		67EEBC562E3A76CE000ADB56 /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EEBC552E3A76CE000ADB56 /* Rules.swift */; };
+		67EEBC5A2E3A788A000ADB56 /* RulesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EEBC592E3A788A000ADB56 /* RulesService.swift */; };
+		67EEBC5C2E3A7A42000ADB56 /* RulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EEBC5B2E3A7A42000ADB56 /* RulesViewModel.swift */; };
 		8352AD592E310EBC00F4084D /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352AD582E310EBC00F4084D /* StopwatchView.swift */; };
 		837121CB2E32748000DB2309 /* QuestionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121C92E32748000DB2309 /* QuestionVM.swift */; };
 		837121CC2E32748000DB2309 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837121C72E32748000DB2309 /* NetworkManager.swift */; };
@@ -33,6 +36,9 @@
 
 /* Begin PBXFileReference section */
 		671199DB2E33D96C00E34690 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		67EEBC552E3A76CE000ADB56 /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		67EEBC592E3A788A000ADB56 /* RulesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesService.swift; sourceTree = "<group>"; };
+		67EEBC5B2E3A7A42000ADB56 /* RulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewModel.swift; sourceTree = "<group>"; };
 		8352AD582E310EBC00F4084D /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 		837121C72E32748000DB2309 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		837121C92E32748000DB2309 /* QuestionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionVM.swift; sourceTree = "<group>"; };
@@ -69,6 +75,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67EEBC542E3A76AD000ADB56 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				67EEBC552E3A76CE000ADB56 /* Rules.swift */,
+				67EEBC592E3A788A000ADB56 /* RulesService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		67EEBC572E3A76DC000ADB56 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				671199DB2E33D96C00E34690 /* RulesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		67EEBC582E3A76E9000ADB56 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				67EEBC5B2E3A7A42000ADB56 /* RulesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8352AD5A2E31108500F4084D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +166,9 @@
 		8373C8202E34C90C00D0F80C /* Rules */ = {
 			isa = PBXGroup;
 			children = (
-				671199DB2E33D96C00E34690 /* RulesViewController.swift */,
+				67EEBC582E3A76E9000ADB56 /* ViewModel */,
+				67EEBC572E3A76DC000ADB56 /* View */,
+				67EEBC542E3A76AD000ADB56 /* Model */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -273,8 +306,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67EEBC5A2E3A788A000ADB56 /* RulesService.swift in Sources */,
 				8373C82D2E351BF300D0F80C /* LevelCell.swift in Sources */,
+				67EEBC562E3A76CE000ADB56 /* Rules.swift in Sources */,
 				671199DC2E33D96C00E34690 /* RulesViewController.swift in Sources */,
+				67EEBC5C2E3A7A42000ADB56 /* RulesViewModel.swift in Sources */,
 				8373C81B2E34C3F300D0F80C /* GameViewController.swift in Sources */,
 				8373C81C2E34C3F300D0F80C /* StartScreenVC.swift in Sources */,
 				8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */,
