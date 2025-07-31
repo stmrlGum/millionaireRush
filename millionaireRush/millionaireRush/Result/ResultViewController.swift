@@ -12,7 +12,6 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
         viewModel.selectedLevel = currentQuestionIndex! + 1
         setupBackground()
         setupLogoAndHelp()
@@ -61,7 +60,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
 
     func setupTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = .blue
+        tableView.backgroundColor = .clear
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
