@@ -339,7 +339,7 @@ class GameViewController: UIViewController {
     @objc func openResult() {
         SoundManager.shared.pauseSound()
         let resultVC = ResultViewController()
-        resultVC.selectedLevel = currentQuestionIndex
+        resultVC.viewModel.selectedLevel = currentQuestionIndex
         resultVC.modalPresentationStyle = .fullScreen
         present(resultVC, animated: true)
     }
