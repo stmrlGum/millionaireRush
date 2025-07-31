@@ -100,11 +100,13 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     @objc func putMoneyButtonTapped() {
-        let endVC = EndScreenVC()
-        print(selectedLevel!, levels[selectedLevel!].prize)
-        let levelIndex = levels.firstIndex { $0.number == selectedLevel! } ?? 0
-        endVC.level = selectedLevel!
-        endVC.score = levels[levelIndex].prize
+        guard let selectedLevel = selectedLevel else { return }
+
+        let levelIndex = levels.firstIndex { $0.number == selectedLevel } ?? 0
+        let prize = levels[levelIndex].prize
+
+        let viewModel = EndScreenViewModel(score: Int(prize) ?? 0, level: selectedLevel)
+        let endVC = EndScreenVC(viewModel: viewModel)
         endVC.modalPresentationStyle = .fullScreen
         present(endVC, animated: true)
     }
