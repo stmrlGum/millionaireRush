@@ -58,17 +58,6 @@ final class EndScreenVC: UIViewController {
         allTimeScoreLabel.text = viewModel.scoreText
     }
 
-    // MARK: - Actions
-
-    @objc private func pressedMainScreenButton(_ sender: UIButton) {
-        sender.changeState()
-        viewModel.mainScreenTapped()
-    }
-
-    @objc private func pressedNewGameButton(_ sender: UIButton) {
-        sender.changeState()
-        viewModel.newGameTapped()
-    }
 
     // MARK: - UI Factory
 
@@ -198,5 +187,58 @@ final class EndScreenVC: UIViewController {
             coinImage.heightAnchor.constraint(equalToConstant: 32),
             coinImage.widthAnchor.constraint(equalToConstant: 32)
         ])
+    }
+    
+    @objc private func pressedMainScreenButton(_ sender: UIButton) {
+        sender.changeState()
+        let mainVC = StartScreenVC()
+        
+        setRootViewController(mainVC)
+    }
+
+    @objc private func pressedNewGameButton(_ sender: UIButton) {
+        sender.changeState()
+        NetworkManager.shared.getData { [weak self] result in
+            switch result {
+            case .success(let json):
+                let question = MillionareVM(json: json)
+                questions = question.results
+                DispatchQueue.main.async {
+                    self?.openGame(isContinue: false)
+                    sender.isUserInteractionEnabled = true
+                }
+            case .failure(let error):
+                debugPrint("Error: \(error)")
+                DispatchQueue.main.async {
+                    sender.isUserInteractionEnabled = true
+                    let alert = UIAlertController(title: "Bad request", message: "Bad internet connection, check connection and turn off VPN", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self?.present(alert, animated: true)
+                }
+            }
+        }
+    }
+
+    func openGame(isContinue: Bool) {
+        let gameVC = GameViewController()
+        gameVC.isContunueGame = isContinue
+        gameVC.modalPresentationStyle = .fullScreen
+        present(gameVC, animated: true)
+    }
+
+    func setRootViewController(_ vc: UIViewController) {
+        guard let windowScene = UIApplication.shared.connectedScenes
+                .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return
+        }
+
+        window.rootViewController = vc
+        window.makeKeyAndVisible()
+
+        UIView.transition(with: window,
+                          duration: 0.3,
+                          options: .transitionCrossDissolve,
+                          animations: nil)
     }
 }

@@ -316,17 +316,22 @@ class GameViewController: UIViewController {
     }
     
     func openEndGame() {
-        let endVC = EndScreenVC()
-        print(currentQuestionIndex! + 1)
-        endVC.level = currentQuestionIndex! + 1
-        if currentQuestionIndex! + 1 >= 10 {
-            endVC.score = "$25,000"
-        } else if currentQuestionIndex! + 1 >= 5 {
-            endVC.score = "$5,000"
+        let level = currentQuestionIndex! + 1
+        let score: Int
+
+        if level >= 10 {
+            score = 25000
+        } else if level >= 5 {
+            score = 5000
         } else {
-            endVC.score = "$0"
+            score = 0
         }
+
+        let viewModel = EndScreenViewModel(score: score, level: level)
+        let endVC = EndScreenVC(viewModel: viewModel)
+        
         endVC.modalPresentationStyle = .fullScreen
+
         present(endVC, animated: true)
     }
 
