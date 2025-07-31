@@ -29,6 +29,7 @@
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
 		F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */; };
+		F3D7A5742E3B77E200136AA2 /* EndScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7A5732E3B77E200136AA2 /* EndScreenViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		83C2DF4A2E2E4AF0008EF248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScreenVC.swift; sourceTree = "<group>"; };
+		F3D7A5732E3B77E200136AA2 /* EndScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D7A5712E34EE3400136AA2 /* EndScreenVC.swift */,
+				F3D7A5732E3B77E200136AA2 /* EndScreenViewModel.swift */,
 			);
 			path = EndScreen;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				8373C81C2E34C3F300D0F80C /* StartScreenVC.swift in Sources */,
 				8373C81D2E34C3F300D0F80C /* UIButtonExtensions.swift in Sources */,
 				83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */,
+				F3D7A5742E3B77E200136AA2 /* EndScreenViewModel.swift in Sources */,
 				8379F9D72E35F38F00C9627D /* BoolExtension.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */,

@@ -9,40 +9,106 @@ import UIKit
 
 final class EndScreenVC: UIViewController {
 
-    // MARK: - Public Props (устанавливаются до появления экрана)
-    var score: String = ""      // передаётся из предыдущего экрана
-    var level: Int = 0        // передаётся из предыдущего экрана
+    // MARK: - Dependencies
+    private let viewModel: EndScreenViewModel
+
+    // MARK: - Init
+    init(viewModel: EndScreenViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - UI Элементы
 
-    private lazy var backgroundImageView: UIImageView = {
+    private lazy var backgroundImageView = createBackgroundImageView()
+    private lazy var scoreLabelStack = createScoreLabelStack()
+    private lazy var mainScreenButton = createMainScreenButton()
+    private lazy var newGameButton = createNewGameButton()
+    private lazy var textLabel = createTextLabel()
+    private lazy var logoMillionaire = createLogoImageView()
+    private lazy var allTimeScoreTextLabel = createAllTimeScoreTextLabel()
+    private lazy var allTimeScoreLabel = createAllTimeScoreLabel()
+    private lazy var coinImage = createCoinImageView()
+
+    // MARK: - Life cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black
+
+        [backgroundImageView, mainScreenButton, textLabel, logoMillionaire,
+         newGameButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack]
+            .forEach { view.addSubview($0) }
+
+        scoreLabelStack.addArrangedSubview(allTimeScoreLabel)
+        scoreLabelStack.addArrangedSubview(coinImage)
+
+        setupConstraints()
+        configureUI()
+    }
+
+    // MARK: - UI Configuration
+
+    private func configureUI() {
+        allTimeScoreTextLabel.text = viewModel.levelText
+        allTimeScoreLabel.text = viewModel.scoreText
+    }
+
+    // MARK: - Actions
+
+    @objc private func pressedMainScreenButton(_ sender: UIButton) {
+        sender.changeState()
+        viewModel.mainScreenTapped()
+    }
+
+    @objc private func pressedNewGameButton(_ sender: UIButton) {
+        sender.changeState()
+        viewModel.newGameTapped()
+    }
+
+    // MARK: - UI Factory
+
+    private func createBackgroundImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
+    }
 
-    let scoreLabelStack: UIStackView = {
+    private func createScoreLabelStack() -> UIStackView {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.distribution = .fill
         stack.spacing = 2
         stack.alignment = .center
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
-    }()
+    }
 
-    private lazy var mainScreenButton: UIButton = {
+    private func createMainScreenButton() -> UIButton {
         let button = UIButton()
         button.setTitle("Main screen", for: .normal)
         button.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(pressedMainScreenButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
-    }()
+    }
 
-    private lazy var textLabel: UILabel = {
+    private func createNewGameButton() -> UIButton {
+        let button = UIButton()
+        button.setTitle("New game", for: .normal)
+        button.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 24)
+        button.addTarget(self, action: #selector(pressedNewGameButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+
+    private func createTextLabel() -> UILabel {
         let label = UILabel()
         label.text = "Game over!"
         label.textColor = .white
@@ -52,28 +118,26 @@ final class EndScreenVC: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    }
 
-    private lazy var logoMillionaire: UIImageView = {
-        let logoImageView = UIImageView()
-        let image = UIImage(named: "logo")
-        logoImageView.image = image
-        logoImageView.contentMode = .scaleAspectFill
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.clipsToBounds = true
-        return logoImageView
-    }()
+    private func createLogoImageView() -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: "logo"))
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }
 
-    private lazy var allTimeScoreTextLabel: UILabel = {
+    private func createAllTimeScoreTextLabel() -> UILabel {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
         label.textColor = .gray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    }
 
-    private lazy var allTimeScoreLabel: UILabel = {
+    private func createAllTimeScoreLabel() -> UILabel {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 24, weight: .semibold)
@@ -81,52 +145,15 @@ final class EndScreenVC: UIViewController {
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    }
 
-    private lazy var newGameButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("New game", for: .normal)
-        button.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
-        button.titleLabel?.font = .boldSystemFont(ofSize: 24)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(pressedNewGameButton), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var coinImage: UIImageView = {
-        let imageView = UIImageView()
-        let image = UIImage(named: "coin")
-        imageView.layer.cornerRadius = imageView.frame.width / 2
+    private func createCoinImageView() -> UIImageView {
+        let imageView = UIImageView(image: UIImage(named: "coin"))
+        imageView.layer.cornerRadius = 16
         imageView.clipsToBounds = true
-        imageView.image = image
         imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }()
-
-    // MARK: - Жизненный цикл
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .black
-        
-        [backgroundImageView, mainScreenButton, textLabel, logoMillionaire,
-         newGameButton, allTimeScoreLabel, allTimeScoreTextLabel, scoreLabelStack]
-            .forEach { view.addSubview($0) }
-
-        scoreLabelStack.addArrangedSubview(allTimeScoreLabel)
-        scoreLabelStack.addArrangedSubview(coinImage)
-        
-
-        setupConstraints()
-        configureUI()
-    }
-
-    // MARK: - Настройка текста и данных
-
-    private func configureUI() {
-        allTimeScoreTextLabel.text = "Level \(level)"
-        allTimeScoreLabel.text = "\(score)"
     }
 
     // MARK: - Constraints
@@ -153,8 +180,8 @@ final class EndScreenVC: UIViewController {
             textLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
             textLabel.bottomAnchor.constraint(equalTo: allTimeScoreTextLabel.topAnchor, constant: -16),
 
-            logoMillionaire.heightAnchor.constraint(equalToConstant: 195),
-            logoMillionaire.widthAnchor.constraint(equalToConstant: 195),
+            logoMillionaire.heightAnchor.constraint(equalToConstant: 250),
+            logoMillionaire.widthAnchor.constraint(equalToConstant: 250),
             logoMillionaire.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoMillionaire.bottomAnchor.constraint(equalTo: textLabel.topAnchor, constant: -16),
 
@@ -171,62 +198,5 @@ final class EndScreenVC: UIViewController {
             coinImage.heightAnchor.constraint(equalToConstant: 32),
             coinImage.widthAnchor.constraint(equalToConstant: 32)
         ])
-    }
-
-    // MARK: - Действия кнопок
-
-    @objc func pressedMainScreenButton(_ sender: UIButton) {
-        sender.changeState()
-
-        let mainVC = StartScreenVC()
-        currentQuestionIndex = nil
-        setRootViewController(mainVC)
-    }
-
-    @objc func pressedNewGameButton(_ sender: UIButton) {
-        sender.changeState()
-        NetworkManager.shared.getData { [weak self] result in
-            switch result {
-            case .success(let json):
-                let question = MillionareVM(json: json)
-                questions = question.results
-                    DispatchQueue.main.async {
-                        self?.openGame(isContinue: false)
-                        sender.isUserInteractionEnabled = true
-                    }
-            case .failure(let error):
-                debugPrint("Error: \(error)")
-                sender.isUserInteractionEnabled = true
-                let alert = UIAlertController(title: "Bad request", message: "Bad internet connection, check connection and turn off VPN", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "ОК", style: .default))
-                self?.present(alert, animated: true)
-            }
-        }
-        
-        
-    }
-
-    func openGame(isContinue: Bool) {
-        let gameVC = GameViewController()
-        gameVC.isContunueGame = isContinue
-        gameVC.modalPresentationStyle = .fullScreen
-        present(gameVC, animated: true)
-    }
-    
-    func setRootViewController(_ vc: UIViewController) {
-        guard let windowScene = UIApplication.shared.connectedScenes
-                .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
-              let window = windowScene.windows.first else {
-            return
-        }
-
-        window.rootViewController = vc
-        window.makeKeyAndVisible()
-
-        UIView.transition(with: window,
-                          duration: 0.3,
-                          options: .transitionCrossDissolve,
-                          animations: nil,
-                          completion: nil)
     }
 }
