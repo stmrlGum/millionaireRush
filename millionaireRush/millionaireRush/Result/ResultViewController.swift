@@ -16,6 +16,7 @@ class ResultViewController: UIViewController, UITableViewDataSource, UITableView
         setupBackground()
         setupLogoAndHelp()
         setupTableView()
+        print("Hello world")
     }
 
     // MARK: - UI Setup
