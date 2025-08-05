@@ -139,79 +139,62 @@ class GameViewController: UIViewController {
         return label
     }()
     
+    let viewModel = GameViewModel()
     var isContunueGame: Bool = false
     
-    let levels: [(number: Int, prize: String)] = [
-        (15, "$1,000,000"),
-        (14, "$500,000"),
-        (13, "$250,000"),
-        (12, "$100,000"),
-        (11, "$50,000"),
-        (10, "$25,000"),
-        (9, "$15,000"),
-        (8, "$12,500"),
-        (7, "$10,000"),
-        (6, "$7,500"),
-        (5, "$5,000"),
-        (4, "$3,000"),
-        (3, "$2,000"),
-        (2, "$1,000"),
-        (1, "$500")
-    ]
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        [backgroundImageView, numberOfQuestion, costLabel, callButton, timerView, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach( {view.addSubview($0) } )
-        timerView.onFinish = {  [weak self] in
-            self?.questionLabel.text = "Game over! Time is up"
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self?.openEndGame()
+            super.viewDidLoad()
+            [backgroundImageView, numberOfQuestion, costLabel, callButton, timerView, audienceButton, fiftyButton, firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton, questionLabel, returnButton, barChartButton].forEach { view.addSubview($0) }
+
+            timerView.onFinish = { [weak self] in
+                self?.questionLabel.text = "Game over! Time is up"
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self?.openEndGame()
+                }
             }
+
+            setupConstraints()
+            setupGame()
+            SoundManager.shared.playSound(sound: .clock)
         }
-        setupConstraints()
-        setupGame()
-        SoundManager.shared.playSound(sound: .clock)
-    }
     
     private func setupGame() {
-        if !isContunueGame {
-            currentQuestionIndex = 0
+            if !isContunueGame {
+                currentQuestionIndex = 0
+            }
+            showQuestion()
         }
-        showQuestion()
-    }
 
     private func showQuestion() {
-        timerView.start()
-        
-        [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { button in
-            button.isHidden = false
-            button.isEnabled = true
-            button.alpha = 1.0
-        }
-        
-        if let level = levels.first(where: { $0.number == currentQuestionIndex! + 1 }) {
-            numberOfQuestion.text = "QUESTION #\(level.number)"
-            costLabel.text = level.prize
-        }
-        
-        guard currentQuestionIndex! < questions!.count else {
-            questionLabel.text = "Congratulations! You've finished the game!"
-            self.timerView.pause()
-            SoundManager.shared.playSound(sound: .correctAnswer)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.openEndGame()
+            timerView.start()
+            
+            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach {
+                $0.isHidden = false
+                $0.isEnabled = true
+                $0.alpha = 1.0
             }
-            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isHidden = true }
-            return
+
+            guard viewModel.getNextQuestionExists() else {
+                questionLabel.text = "Congratulations! You've finished the game!"
+                timerView.pause()
+                SoundManager.shared.playSound(sound: .correctAnswer)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    self.openEndGame()
+                }
+                [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isHidden = true }
+                return
+            }
+
+            numberOfQuestion.text = viewModel.questionNumberText
+            costLabel.text = viewModel.costText
+            questionLabel.text = viewModel.questionText
+
+            let answers = viewModel.answers
+            firstAnswerButton.setTitle(answers[0], for: .normal)
+            secondAnswerButton.setTitle(answers[1], for: .normal)
+            thirdAnswerButton.setTitle(answers[2], for: .normal)
+            fourthAnswerButton.setTitle(answers[3], for: .normal)
         }
-        let question = questions![currentQuestionIndex!]
-            questionLabel.text = question.question.removingHTMLEntities()
-            let allAnswers = ([question.correctAnswer] + question.incorrectAnswers).shuffled()
-            firstAnswerButton.setTitle(allAnswers[0].removingHTMLEntities(), for: .normal)
-            secondAnswerButton.setTitle(allAnswers[1].removingHTMLEntities(), for: .normal)
-            thirdAnswerButton.setTitle(allAnswers[2].removingHTMLEntities(), for: .normal)
-            fourthAnswerButton.setTitle(allAnswers[3].removingHTMLEntities(), for: .normal)
-    }
     
     
     private func setupConstraints() {
@@ -269,40 +252,38 @@ class GameViewController: UIViewController {
     }
     
     @objc func pressedAnswerButton(_ sender: UIButton) {
-        guard currentQuestionIndex! < questions!.count else { return }
+            guard viewModel.getNextQuestionExists() else { return }
 
-        let selectedAnswer = sender.title(for: .normal)
-        let correctAnswer = questions![currentQuestionIndex!].correctAnswer
+            let selected = sender.title(for: .normal) ?? ""
+            let correct = viewModel.getCorrectAnswer()
 
-        if selectedAnswer == correctAnswer {
-            sender.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
-            SoundManager.shared.playSound(sound: .correctAnswer)
-            self.timerView.pause()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                [self.firstAnswerButton, self.secondAnswerButton, self.thirdAnswerButton, self.fourthAnswerButton].forEach {
-                    $0.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
+            if viewModel.isCorrectAnswer(selected) {
+                sender.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
+                SoundManager.shared.playSound(sound: .correctAnswer)
+                timerView.pause()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    [self.firstAnswerButton, self.secondAnswerButton, self.thirdAnswerButton, self.fourthAnswerButton].forEach {
+                        $0.setBackgroundImage(UIImage(named: "blueButton"), for: .normal)
+                    }
+                    SoundManager.shared.playSound(sound: .clock)
+                    currentQuestionIndex! += 1
+                    self.showQuestion()
                 }
-                SoundManager.shared.playSound(sound: .clock)
-                currentQuestionIndex! += 1
-                self.showQuestion()
+            } else {
+                sender.setBackgroundImage(UIImage(named: "redButton"), for: .normal)
+                questionLabel.text = "Game over!"
+                SoundManager.shared.playSound(sound: .wrongAnswer)
+                returnButton.isHidden = true
+                [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach { $0.isUserInteractionEnabled = false }
+                timerView.pause()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                    self.openEndGame()
+                }
+                [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].first {
+                    $0.title(for: .normal) == correct
+                }?.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
             }
-        } else {
-            sender.setBackgroundImage(UIImage(named: "redButton"), for: .normal)
-            self.questionLabel.text = "Game over!"
-            SoundManager.shared.playSound(sound: .wrongAnswer)
-            self.returnButton.isHidden = true
-            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].forEach {
-                $0.isUserInteractionEnabled = false
-            }
-            self.timerView.pause()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                self.openEndGame()
-            }
-            [firstAnswerButton, secondAnswerButton, thirdAnswerButton, fourthAnswerButton].first {
-                $0.title(for: .normal) == correctAnswer
-            }?.setBackgroundImage(UIImage(named: "greenButton"), for: .normal)
         }
-    }
     
     func pressedSecondaryButton(_ sender: UIButton) {
         sender.isEnabled = false
@@ -316,24 +297,13 @@ class GameViewController: UIViewController {
     }
     
     func openEndGame() {
-        let level = currentQuestionIndex! + 1
-        let score: Int
-
-        if level >= 10 {
-            score = 25000
-        } else if level >= 5 {
-            score = 5000
-        } else {
-            score = 0
-        }
-
-        let viewModel = EndScreenViewModel(score: score, level: level)
-        let endVC = EndScreenVC(viewModel: viewModel)
-        
-        endVC.modalPresentationStyle = .fullScreen
-
-        present(endVC, animated: true)
-    }
+           let score = viewModel.getPrizeLevel()
+           let level = currentQuestionIndex! + 1
+           let endVM = EndScreenViewModel(score: score, level: level)
+           let endVC = EndScreenVC(viewModel: endVM)
+           endVC.modalPresentationStyle = .fullScreen
+           present(endVC, animated: true)
+       }
 
     
     @objc func openResult() {

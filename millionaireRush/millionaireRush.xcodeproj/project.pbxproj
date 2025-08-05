@@ -28,6 +28,7 @@
 		8373C82A2E351A9900D0F80C /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C8292E351A9900D0F80C /* ResultViewController.swift */; };
 		8373C82D2E351BF300D0F80C /* LevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C82C2E351BF300D0F80C /* LevelCell.swift */; };
 		8379F9D72E35F38F00C9627D /* BoolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8379F9D62E35F38900C9627D /* BoolExtension.swift */; };
+		83A8B0862E3D08CB00C36291 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A8B0852E3D08C400C36291 /* GameViewModel.swift */; };
 		83C2DF512E2E4AF0008EF248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */; };
 		83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2DF4E2E2E4AF0008EF248 /* SceneDelegate.swift */; };
 		83C2DF562E2E4AF0008EF248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83C2DF4B2E2E4AF0008EF248 /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 		8373C8292E351A9900D0F80C /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		8373C82C2E351BF300D0F80C /* LevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCell.swift; sourceTree = "<group>"; };
 		8379F9D62E35F38900C9627D /* BoolExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtension.swift; sourceTree = "<group>"; };
+		83A8B0852E3D08C400C36291 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		83C2DF192E2E468A008EF248 /* millionaireRush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = millionaireRush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83C2DF472E2E4AF0008EF248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83C2DF492E2E4AF0008EF248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,7 +165,6 @@
 		8373C81A2E34C3F300D0F80C /* StartScreen */ = {
 			isa = PBXGroup;
 			children = (
-				8373C8182E34C3F300D0F80C /* GameViewController.swift */,
 				8373C8192E34C3F300D0F80C /* StartScreenVC.swift */,
 			);
 			path = StartScreen;
@@ -199,6 +200,15 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
+		83A8B0842E3D089000C36291 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				83A8B0852E3D08C400C36291 /* GameViewModel.swift */,
+				8373C8182E34C3F300D0F80C /* GameViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		83C2DF102E2E468A008EF248 = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 		83C2DF502E2E4AF0008EF248 /* millionaireRush */ = {
 			isa = PBXGroup;
 			children = (
+				83A8B0842E3D089000C36291 /* Game */,
 				8373C8282E35173E00D0F80C /* EndScreen */,
 				8373C8172E34C3F300D0F80C /* Extensions */,
 				8373C81A2E34C3F300D0F80C /* StartScreen */,
@@ -329,6 +340,7 @@
 				8379F9D72E35F38F00C9627D /* BoolExtension.swift in Sources */,
 				83C2DF522E2E4AF0008EF248 /* SceneDelegate.swift in Sources */,
 				F3D7A5722E34EE3400136AA2 /* EndScreenVC.swift in Sources */,
+				83A8B0862E3D08CB00C36291 /* GameViewModel.swift in Sources */,
 				8373C8252E350D9200D0F80C /* StringExtensions.swift in Sources */,
 				8373C82A2E351A9900D0F80C /* ResultViewController.swift in Sources */,
 				83D5F8F32E3BB2EF00FBB345 /* Model.swift in Sources */,
